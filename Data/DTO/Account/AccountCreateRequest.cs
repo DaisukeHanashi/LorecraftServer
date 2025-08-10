@@ -19,5 +19,5 @@ namespace Lorecraft_API.Data.DTO.Account
         public required string Password { get; init; }
         public string? PenName { get; init; }
         public string? CountryCode { get; init;  }
-    }
+    } 
 }

@@ -43,14 +43,14 @@ namespace Lorecraft_API.Controllers
         }
 
         [HttpPost("register")]
-        [Consumes(Constants.ContentType.ApplicationForm)]
-        public async Task<IActionResult> CreateAccount([FromForm] AccountCreateRequest acc)
+        [Consumes(ContentType.ApplicationJson)]
+        public async Task<IActionResult> CreateAccount([FromBody] AccountCreateRequest acc)
         {
             var res = await _accountRepository.CreateAccount(acc);
-            return res.Code == StatusCodes.Status201Created ? Created() : BadRequest(res);
+            return res.Code == StatusCodes.Status201Created ? Ok(res) : BadRequest(res);
         }
         [HttpPost("login")]
-        [Consumes(ContentType.ApplicationForm)]
+        [Consumes(ContentType.ApplicationJson)]
         public async Task<IActionResult> SignIn([ModelBinder(typeof(AccountSignInBinder))] IAccountSignInRequest req)
         {
             var accountResult = await _accountRepository.GetAccountThroughAuthentication(req, req is EmailRequest ? AuthenticationMode.Email : AuthenticationMode.PenName);

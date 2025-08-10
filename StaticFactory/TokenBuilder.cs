@@ -38,7 +38,7 @@ namespace Lorecraft_API.StaticFactory
 
            string token = format.Protect(ticket); 
 
-           return (token, ResultMessageFactory.CreateAcceptedResult("Login successful")); 
+           return (token, ResultMessageFactory.CreateAcceptedResult("Login successful", acc.AccountId, new { AccessToken = token, acc.Role})); 
 
         }
 

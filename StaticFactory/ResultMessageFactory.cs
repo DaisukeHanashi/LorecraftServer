@@ -17,6 +17,8 @@ namespace Lorecraft_API.StaticFactory
         => CreateResult(StatusCodes.Status201Created, message, Id64);
         public static ResultMessage CreateAcceptedResult(string message)
         => CreateResult(StatusCodes.Status202Accepted, message);
+         public static ResultMessage CreateAcceptedResult(string message, long id64, object data)
+        => CreateResult(StatusCodes.Status202Accepted, message, id64, data);
         public static ResultMessage CreateNotFoundResult(string message)
         => CreateResult(StatusCodes.Status404NotFound, message);
         public static ResultMessage CreateBadRequestResult(string message)
@@ -29,6 +31,8 @@ namespace Lorecraft_API.StaticFactory
         public static ResultMessage CreateResult(int code, string message, string idString) => new() { Code = code, Message = message, IdString = idString };
         public static ResultMessage CreateResult(int code, string message, long id64) => new() { Code = code, Message = message, Id64 = id64 };
         public static ResultMessage CreateResult(int code, string message, object data) => new() { Code = code, Message = message, Data = data };
+        public static ResultMessage CreateResult(int code, string message, long id64, object data) => new() { Code = code, Message = message, Id64 = id64, Data = data};
+
 
         public static void ModifyData(this ResultMessage result, object? freshData)
         {
