@@ -56,6 +56,8 @@ namespace Lorecraft_API.Resources
 
         public static class CommonMessages
         {
+            public const string LogoutMessage = "User has successfully been signed out!";
+            public const string LogoutFailMessage = "Failed to logout!";
             public const string EmptySQL = "Empty SQL script is returned!";
             public const string IDNotFound = "ID (primary identifier of a certain identifier) is not found!";
             public const string IncorrectAuth = "Incorrect Username/Password";

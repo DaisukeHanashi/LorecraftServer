@@ -91,6 +91,14 @@ namespace Lorecraft_API.Controllers
                 access_token = token
             });
         }
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> LogOut()
+        {
+            var res = await _authManager.SignOut();
+
+            return res.Code == StatusCodes.Status200OK ? Ok(res) : Conflict(res);
+        }
         [HttpPatch("update/detail")]
         [Consumes(Constants.ContentType.ApplicationForm)]
         public async Task<IActionResult> Update([FromForm] AccountUpdateRequest req)

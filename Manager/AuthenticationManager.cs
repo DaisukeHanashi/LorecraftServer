@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Lorecraft_API.Helper;
 using Lorecraft_API.Data.Repository;
+using Lorecraft_API.StaticFactory;
 
 namespace Lorecraft_API.Manager
 {
@@ -101,6 +102,20 @@ namespace Lorecraft_API.Manager
             catch (Exception)
             {
                 return null;
+            }
+        }
+        public async Task<ResultMessage> SignOut()
+        {
+            if (_httpContextAccessor.HttpContext is null)
+                throw new ArgumentException("Context hasn't been found!");
+            try
+            {
+                await _httpContextAccessor.HttpContext.SignOutAsync(Constants.AuthenticationScheme);
+                return ResultMessageFactory.CreateOKResult(CommonMessages.LogoutMessage);
+            }
+            catch (Exception)
+            {
+                return ResultMessageFactory.CreateInternalServerErrorResult(CommonMessages.LogoutFailMessage);
             }
         }
     }
