@@ -24,6 +24,7 @@ namespace Lorecraft_API.Factory
             Password = _cryptoManager.HashPassword(req.Password),
             PenName = req.PenName, 
             CountryCodeContact = req.CountryCode,
+            DatetimeCreated = Constants.CurrentUtc8PlusNow,
             Role = Constants.RegularUser
         };
         public AccountResponse MapToResponse(Account acc, Constants.PasswordRequestMode requestMode) => new(){
@@ -39,6 +40,9 @@ namespace Lorecraft_API.Factory
             ContactNum = acc.ContactNum,
             IsSpammer = acc.IsSpammer,
             PenName = acc.PenName,
+            DateCreated = acc.DatetimeCreated.ToShortDateString(),
+            TimeCreated = acc.DatetimeCreated.ToShortTimeString(),
+            CountryCode = acc.CountryCodeContact,
             Password = requestMode == Constants.PasswordRequestMode.RequirePassword ? acc.Password : null,
             Role = acc.Role
         };

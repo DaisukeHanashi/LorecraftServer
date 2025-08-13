@@ -25,10 +25,12 @@ namespace Lorecraft_API.DependencyInjection
 
         public static void InstallBaseService(this IServiceCollection services, IConfiguration config, IWebHostEnvironment env)
         {
+            services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
             services.AddLogger(config);
             services.ConfigureSections(config);
             services.AddCryptoAlgorithms(config);
+            services.AddSingleton<ICacheService, CacheService>();
             services.AddDataService();
             services.AddCustomAuthentication(config, env);
             services.AddCors(options =>

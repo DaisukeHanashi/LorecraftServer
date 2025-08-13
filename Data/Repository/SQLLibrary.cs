@@ -55,7 +55,8 @@ namespace Lorecraft_API.Data.Repository
          nameof(Account.Role),
          nameof(Account.TempPassword),
          nameof(Account.PenName),
-         nameof(Account.CountryCodeContact)
+         nameof(Account.CountryCodeContact),
+         nameof(Account.DatetimeCreated)
         ];
 
         private static readonly string[] CharacterProperties =
@@ -489,7 +490,7 @@ namespace Lorecraft_API.Data.Repository
 
         private static void CraftReadingProperties(ref string product, string entityName, string[] parameters, string[] snakeCasedProperties)
         {
-            if (parameters.Length <= 0 || snakeCasedProperties.Length <= 0)
+            if (snakeCasedProperties.Length <= 0)
                 return;
 
             int count = 0;
@@ -538,15 +539,18 @@ namespace Lorecraft_API.Data.Repository
             if (!string.IsNullOrEmpty(havingProp))
                 product += HAVING + SPACE + string.Join(DOT, tableLetter, havingProp);
 
-            product += SPACE + ORDER_BY + SPACE;
-
-            for (int j = 0; j < orderBys.Length; j++)
+            if (orderBys.Length != 0)
             {
-                product += string.Join(DOT, tableLetter, ToSnakeCase(orderBys[j])) + ", ";
+                product += SPACE + ORDER_BY + SPACE;
+
+                for (int j = 0; j < orderBys.Length; j++)
+                {
+                    product += string.Join(DOT, tableLetter, ToSnakeCase(orderBys[j])) + ", ";
+                }
             }
 
             if (product.EndsWith(", "))
-                product = product[..^2];
+                    product = product[..^2];
 
             product += SPACE;
 

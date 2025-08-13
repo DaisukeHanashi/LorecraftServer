@@ -53,6 +53,18 @@ namespace Lorecraft_API.Resources
         {
             public const string AllowLocal = "AllowLocalOrigin";
         }
+        public static class CachePrefix
+        {
+            public const string AccountKey = "account";
+            public const string CharacterKey = "character";
+            public const string ConceptKey = "concept";
+            public const string ContextKey = "context";
+            public const string CountryKey = "country";
+            public const string DescriptionKey = "description";
+            public const string FactionKey = "faction";
+            public const string LoreKey = "lore";
+            public const string StoryKey = "story";
+        }
 
         public static class CommonMessages
         {

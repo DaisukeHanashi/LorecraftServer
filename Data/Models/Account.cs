@@ -19,6 +19,7 @@ namespace Lorecraft_API.Data.Models
         public string? TempPassword { get; set; }
         public string? PenName { get; set; }
         public string? CountryCodeContact { get; set; }
+        public DateTime DatetimeCreated { get; set; }
         public string[] Properties { get; } =
         [
          nameof(AccountId),
@@ -37,7 +38,8 @@ namespace Lorecraft_API.Data.Models
          nameof(Role),
          nameof(TempPassword),
          nameof(PenName),
-         nameof(CountryCodeContact)
+         nameof(CountryCodeContact),
+         nameof(DatetimeCreated)
         ];
 
     }

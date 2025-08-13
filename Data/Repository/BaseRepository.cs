@@ -15,6 +15,8 @@ namespace Lorecraft_API.Data.Repository
 
         protected async Task<IEnumerable<T>> GetAllAsync<T>(string sql) where T : class
         {
+            Console.WriteLine(sql);
+            
             using var connection = _factory.Create();
 
             return await connection.QueryAsync<T>(sql);

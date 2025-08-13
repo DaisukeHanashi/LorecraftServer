@@ -31,7 +31,7 @@ namespace Lorecraft_API.Data.Repository
         private readonly CryptoManager _cryptoManager = cryptoManager;
         public async Task<ResultMessage> GetAccounts()
         {
-            string sql = SQLWriter.GenerateSelectSqlForDefaultSchema(nameof(Account), null).AsNoTracking();
+            string sql = SQLWriter.GenerateSelectSqlWithSortByForDefaultSchema(nameof(Account), [], [nameof(Account.AccountId)], null, [nameof(Account.DatetimeCreated)], SortingMode.Descending).AsNoTracking();
 
             IEnumerable<Account> data = await GetAllAsync<Account>(sql);
 
